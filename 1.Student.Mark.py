@@ -1,3 +1,4 @@
+
 students ={}
 courses ={}
 marks={}
@@ -40,6 +41,13 @@ def list_mark():
     else:
         print("Non-existing Student ID or Course ID")          
 selection=int(input("Enter your choice of selection: "))
+print("1 for input students ")
+print("2 for input courses ")
+print("3 for input student's marks ")
+print("4 for listing students students ")
+print("5 for listing courses students ")
+print("6 for listing marks of students ")
+
 if selection==1:
     input_students()
 elif selection==2:
