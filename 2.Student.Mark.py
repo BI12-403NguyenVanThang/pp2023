@@ -51,7 +51,6 @@ class Major(Student,Course):
             print(f"{id} : {self.mark[id]}")
 
 
-
 runcode = Major()
 runcode.addStudent()
 runcode.addCourse()
