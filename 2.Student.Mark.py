@@ -1,58 +1,52 @@
-class Student:
-    def __init__(self, student_id, student_name, student_dateofbirth):
-        self.id=student_id
-        self.name=student_name
-        self.dateofbirth=student_dateofbirth
-
-# This class displays information about Course 
 class Course:
-    def __init__(self, course_id, course_name):
-        self.id = course_id
-        self.name = course_name
-
-class Major(Student,Course):
     def __init__(self):
-        self.student = {}
-        self.course = {}
-        self.mark = {}
+        self.__info={}
+    def setInfo(self, id, name):
+        self.__info.update({id : name})
+    def getInfo(self):
+        return self.__info
+class Student(Course):
+    def __init__(self, dob):
+        super().__init__()
+        self.__dob=dob
+    def setInfo(self, id, name, dob):
+        super().setInfo(id, name + " " + dob)
+    def getInfo(self):
+        return super().getInfo()
 
-    def addStudent(self):
-        studentNum = int(input("Enter studentNum: "))
-        for i in range(studentNum):
-            id = input("Student ID: ")
-            name = input("Student Name: ")
-            dateofbirth = input("Student Dob: ")
-            self.student[id] = Student(id, name, dateofbirth)
+class Marks:
+    def __init__(self):
+        self.__mark = []
 
-    def addCourse(self):
-        courseNum = int(input("Ender courseNum: "))
-        for i in range (courseNum):
-            id = input("Course ID: ")
-            name = input("Course Name: ")
-            self.course[id] = Course(id, name)
+    def setMark(self, studentNum, courseNum):
+        for i in range(courseNum):
+            a = []
+            for j in range(studentNum):
+                mark = float(input("Input mark of student " + str((j+1)) + " in course " + str((i+1)) ))
+                a.append(mark)
+            self.__mark.append(a)
+    def getMark(self):
+        return self.__mark
 
-    def addMark(self):
-        courseID = input("CourseID: ")
-        if courseID not in self.course:
-            print("No course exists!")
-            return  
-        
-        for studentID in self.student:
-            mark = input("MARK: ")
-            if studentID not in self.mark:
-                self.mark[id] = {}
-            self.mark[studentID] = mark
+runcode = Student('')
+studentNum=int(input("Input number of students: "))
 
-    def outputStudent(self):
-        for id in self.student:
-            print(f"{id} :  {self.student[id]['name']['dob']}")
-    def outputMark(self):
-        for id in self.student:
-            print(f"{id} : {self.mark[id]}")
+for i in range(studentNum):
+    id=input("Input id: ")
+    name=input("Input name: ")
+    dob=input("Input dob: ")
+    runcode.setInfo(id,name,dob)
+runcode.getInfo()
 
+runcode2 =Course()
+courseNum=int(input("Input number of course: "))
 
-runcode = Major()
-runcode.addStudent()
-runcode.addCourse()
-runcode.addMark()
-runcode.outputMark()
+for i in range(courseNum):
+    id=input("Input id: ")
+    name=input("Input name: ")
+    runcode2.setInfo(id,name)
+runcode2.getInfo()
+
+runcode3 = Marks()
+runcode3.setMark(studentNum,courseNum)
+print(runcode3.getMark())
