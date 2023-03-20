@@ -7,6 +7,7 @@ class Course:
         self.__info.update({id : name})
     def getInfo(self):
         return self.__info
+
 class Student(Course):
     def __init__(self, dob):
         super().__init__()
@@ -28,18 +29,34 @@ class Credits:
 
 class Marks:
     def __init__(self):
+        self.__midterm = []
+        self.__final = []
         self.__mark = []
-
     def setMark(self, studentNum, courseNum):
         for i in range(courseNum):
             a = []
+            b = []
+            c = []
             for j in range(studentNum):
-                mark = float(input("Input mark of student " + str((j+1)) + " in course " + str((i+1)) ))
-                a.append(mark)
-            self.__mark.append(a)
+                midterm = float(input("Input mark of student " + str((j+1)) + " in course " + str((i+1)) + ": " ))
+                final = float(input("Input mark of student " + str((j+1)) + " in course " + str((i+1)) + ": " ))
+                mark = 0.4  * midterm + 0.6 * final
+                midterm.append()
+                a.append(midterm)
+                b.append(final)
+                c.append(mark)
+            self.__midterm.append(a)
+            self.__final.append(b)
+            self.__mark.append(c)
     def getMark(self):
-        return self.__mark
-
+        return self.__midterm, self.__final, self.__mark
+    def sortMark(self):
+        a = np.array[]
+        arr = a.append(a , self.__mark)
+        sortedarr = np.sort(arr)
+        return sortedarr
+    def averageGPA(self):
+        
 runcode = Student('')
 studentNum=int(input("Input number of students: "))
 
@@ -65,4 +82,4 @@ print(runcode3.getMark())
 
 
 runcode4 = Credits(courseNum)
-print(runcode4.getInfo())
+

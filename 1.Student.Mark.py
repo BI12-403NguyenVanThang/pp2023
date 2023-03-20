@@ -1,4 +1,3 @@
-
 students ={}
 courses ={}
 marks={}
@@ -9,7 +8,6 @@ def input_students():
         std_name=input("Student Name:")
         std_date_of_birth=input("Date of birth: ")
         students[std_id]={"studentname": std_name, "dateofbirth":std_date_of_birth}
-
 def input_courses():
     number_courses=int(input("The number of courses: "))
     for i in range(number_courses):
@@ -26,7 +24,6 @@ def input_stdmarks():
         if std_id not in marks:
             marks[std_id]={}
             students[std_id][course_id]=mark
-
 def list_students():
     for std_id in students:
         print(f"{std_id}: {students[std_id][studentname]}")
@@ -40,13 +37,15 @@ def list_mark():
         print(f"{std_id} - {course_id}: {marks[std_id]}")
     else:
         print("Non-existing Student ID or Course ID")          
-selection=int(input("Enter your choice of selection: "))
+
 print("1 for input students ")
 print("2 for input courses ")
 print("3 for input student's marks ")
 print("4 for listing students students ")
 print("5 for listing courses students ")
 print("6 for listing marks of students ")
+
+selection=int(input("Enter your choice of selection: "))
 
 if selection==1:
     input_students()
