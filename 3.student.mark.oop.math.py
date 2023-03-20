@@ -17,46 +17,48 @@ class Student(Course):
     def getInfo(self):
         return super().getInfo()
 
-class Credits:
+class Credits(Course):
     def __init__(self,courseNum):
-        for i in range(courseNum):
-            b = []
-            take_input = int(input('Input the number of credits of course: '))
-            b.append(take_input)
-        self.__credits=b.append(take_input)
-    def getInfo(self):
-        return self.__credits
-
-class Marks:
+        self.__credits = np.empty(0)
+    def getSum(self,i):
+        return self.__credits[i]
+        
+class Marks(Credits):
     def __init__(self):
         self.__midterm = []
         self.__final = []
         self.__mark = []
     def setMark(self, studentNum, courseNum):
         for i in range(courseNum):
-            a = []
-            b = []
             c = []
             for j in range(studentNum):
-                midterm = float(input("Input mark of student " + str((j+1)) + " in course " + str((i+1)) + ": " ))
-                final = float(input("Input mark of student " + str((j+1)) + " in course " + str((i+1)) + ": " ))
+                midterm = np.floor(float(input("Input mark of student " + str((j+1)) + " in course " + str((i+1)) + ": " )))
+                final = np.floor(float(input("Input mark of student " + str((j+1)) + " in course " + str((i+1)) + ": " )))
                 mark = 0.4  * midterm + 0.6 * final
-                midterm.append()
-                a.append(midterm)
-                b.append(final)
                 c.append(mark)
-            self.__midterm.append(a)
-            self.__final.append(b)
             self.__mark.append(c)
     def getMark(self):
-        return self.__midterm, self.__final, self.__mark
+        return self.__mark
     def sortMark(self):
-        a = np.array[]
+        a = np.empty(0)
         arr = a.append(a , self.__mark)
-        sortedarr = np.sort(arr)
+        sortedarr = np.sort(arr)[::-1]
         return sortedarr
-    def averageGPA(self):
+    def averageGPA(self, courseNum, studentNum):
+        super().__init__(courseNum)
+        sum = 0
+        j=0
+        i=0
+        while i < studentNum:
+            if j==courseNum:
+                i += 1
+            else:
+                while j < courseNum:
+                    sum += (self.__mark[j][i]*super().getSum(j))
+                    sumCredit = super().getSum(courseNum)
+                    j+=1
         
+        return sum/sumCredit
 runcode = Student('')
 studentNum=int(input("Input number of students: "))
 
@@ -78,8 +80,5 @@ runcode2.getInfo()
 
 runcode3 = Marks()
 runcode3.setMark(studentNum,courseNum)
-print(runcode3.getMark())
-
-
-runcode4 = Credits(courseNum)
-
+runcode3.getMark()
+runcode3.averageGPA(courseNum,studentNum)
